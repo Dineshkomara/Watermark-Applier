@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watermark Generator</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body style="background-image: url('../static/background-image.png'); background-size: cover; height:480px; padding-top:80px;">
+    <h1>Watermark Generator</h1>
+    <form action="/process" method="post" enctype="multipart/form-data">
+        <div class="preview-container">
+            <input type="radio" name="file_option" value="img" onclick="togglefileInput('img')">Watermark for image
+            <input type="radio" name="file_option" value="docpdf" onclick="togglefilekInput('docpdf')">Watermark for doc/pdf<br><br>
+                <input type="file" name="file" id="imageInput" accept="image/* , application/pdf,.doc, .docx" onchange="previewImage(event, 'imagePreview')"><br><br>
+            <img id="imagePreview" src="#" alt="Preview Image" class="preview-image hidden">
+            <input type="radio" name="watermark_option" value="text" checked onclick="toggleWatermarkInput('text')">Text Watermark
+            <input type="radio" name="watermark_option" value="image" onclick="toggleWatermarkInput('image')">Upload Image Watermark<br><br>
+            <div id="textWatermark" class="hidden">
+                <input type="text" name="watermark_text" placeholder="Watermark Text"><br><br>
+                <input type="color" name="text_color" value="#000000"> Text Color<br><br>
+                <input type="text" name="font_name" placeholder="Font Name (e.g., Arial)">
+                <input type="number" name="font_size" placeholder="Font Size"><br>
+            </div>
+            <div id="imageWatermark" class="hidden">
+                <input type="file" name="watermark_image" id="watermarkImageInput" accept="image/*" onchange="previewImage(event, 'watermarkPreview')"><br>
+                <img id="watermarkPreview" src="#" alt="Preview Watermark" class="preview-image hidden"><br>
+                <input type="radio" name="remove_background" value="yes" checked>Remove Background
+                <input type="radio" name="remove_background" value="no">Keep Background<br><br>
+                scale:<input type="number" name="scale" value="100">
+            </div>
+
+        <label for="x_position">X Position (1-100):</label>
+        <input type="number" name="x_position" min="1" max="100" value="50">
+        <label for="y_position">Y Position (1-100):</label>
+        <input type="number" name="y_position" min="1" max="100" value="50"><br><br>
+
+        <center><label for="transparency">Transparency (0-1):</label>
+        <input type="number" name="transparency" step="0.01" min="0" max="1" value="0.5"></center><br><br>
+        <button type="submit">Generate Watermark</button>
+    </form>
+
+    <script>
+        function toggleWatermarkInput(option) {
+            var textWatermark = document.getElementById('textWatermark');
+            var imageWatermark = document.getElementById('imageWatermark');
+
+            if (option === 'text') {
+                textWatermark.classList.remove('hidden');
+                imageWatermark.classList.add('hidden');
+            } else {
+                textWatermark.classList.add('hidden');
+                imageWatermark.classList.remove('hidden');
+            }
+        }
+        function togglefileInput(option) {
+            var forimg = document.getElementById('forimg');
+            var fordocpdf = document.getElementById('fordocpdf');
+            
+            if (option === 'img') {
+                forimg.classList.remove('hidden');
+                fordocpdf.classList.add('hidden');
+            } else {
+                forimg.classList.add('hidden');
+                fordocpdf.classList.remove('hidden');
+            }
+        }
+
+        function previewImage(event, targetId) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var preview = document.getElementById(targetId);
+                preview.src = reader.result;
+                preview.classList.remove('hidden');
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+</body>
+</html>

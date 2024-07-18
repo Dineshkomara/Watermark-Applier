@@ -1,0 +1,69 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #dda907; /* Light gray background color */
+    display: flex;
+    flex-direction: column; /* Align elements vertically */
+    align-items: center; /* Center align the elements horizontally */
+    justify-content: center; /* Center align the elements vertically */
+    height: 100vh; /* Make the body full height of the viewport */
+}
+
+/* Style for the heading */
+h1 {
+    text-align: center; /* Center align the text */
+    margin-top: 20px; /* Add some top margin */
+}
+
+/* Style for the form container */
+form {
+    max-width: 500px; /* Limit the width of the form */
+    padding: 20px; /* Add padding around the form */
+    background-color: #e9dbb1; /* White background color */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(104, 4, 161, 0.281); /* Drop shadow effect */
+}
+
+/* Style for the preview container */
+.preview-container {
+    margin-bottom: 20px; /* Add some bottom margin */
+    text-align: center; /* Center align the content */
+}
+
+/* Style for the image preview */
+img.preview-image {
+    max-width: 200px; /* Limit the width of the image */
+    max-height: 200px; /* Limit the height of the image */
+    display: block; /* Make the image display as a block element */
+    margin: 0 auto; /* Center the image horizontally */
+    margin-top: 10px; /* Add some top margin */
+    border: 1px solid #ddd; /* Add a border */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Drop shadow effect */
+}
+
+/* Style for the button */
+button[type="submit"] {
+    display: block; /* Make the button display as a block element */
+    width: 100%; /* Make the button full width */
+    padding: 10px; /* Add padding */
+    background-color: #dda907; /* Blue background color */
+    color: #000000; /* White text color */
+    border: none; /* Remove border */
+    border-radius: 7px; /* Rounded corners */
+    cursor: pointer; /* Add pointer cursor on hover */
+}
+
+/* Hover style for the button */
+button[type="submit"]:hover {
+    background-color: #9c7903; /* Darker blue background color */
+}
+
+/* Initially hide preview images */
+.hidden{
+    display: none;
+}
+.preview-image.hidden {
+    display: none;
+}
